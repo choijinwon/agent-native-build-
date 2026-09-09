@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d12">
+  <title>Native Agent — Enterprise Agent Runtime</title>
+  <meta name="description" content="도구 호출, 사용자 승인, 메모리, 추적을 갖춘 확장 가능한 엔터프라이즈 에이전트 런타임.">
+  <meta property="og:title" content="Native Agent — Enterprise Agent Runtime">
+  <meta property="og:description" content="Tools · Approvals · Memory · Traces. 실행 가능한 에이전트 런타임 스타터.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://choijinwon.github.io/agent-native-build-/">
+  <meta property="og:image" content="https://choijinwon.github.io/agent-native-build-/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Native Agent — Enterprise Agent Runtime">
+  <meta name="twitter:description" content="Tools · Approvals · Memory · Traces.">
+  <meta name="twitter:image" content="https://choijinwon.github.io/agent-native-build-/og.png">
+  <link rel="canonical" href="https://choijinwon.github.io/agent-native-build-/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2218%22 fill=%22%236b5ce7%22/><path d=%22M18 46V18h7l14 18V18h7v28h-7L25 28v18z%22 fill=%22white%22/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="nav-wrap">
+    <nav class="nav container" aria-label="주요 메뉴">
+      <a class="brand" href="#top" aria-label="Native Agent 홈">
+        <span class="brand-mark">N</span>
+        <span>Native Agent</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">기능</a>
+        <a href="#architecture">아키텍처</a>
+        <a href="#quickstart">시작하기</a>
+      </div>
+      <a class="nav-github" href="https://github.com/choijinwon/agent-native-build-" target="_blank" rel="noreferrer">
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero container">
+      <div class="hero-copy">
+        <div class="release-pill"><span></span> Open source · Python 3.11+</div>
+        <h1>답변을 넘어,<br><em>업무를 실행하는</em> 에이전트.</h1>
+        <p class="hero-description">모델이 도구를 선택하고, 중요한 변경은 사람의 승인을 받은 뒤 실행합니다. 메모리와 실행 추적까지 갖춘 엔터프라이즈 에이전트 런타임을 바로 시작하세요.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#demo">런타임 살펴보기 <span>↓</span></a>
+          <a class="button ghost" href="https://github.com/choijinwon/agent-native-build-" target="_blank" rel="noreferrer">소스 코드 <span>↗</span></a>
+        </div>
+        <div class="hero-proof">
+          <div><strong>6/6</strong><span>단위 테스트</span></div>
+          <div><strong>4</strong><span>기본 도구</span></div>
+          <div><strong>0</strong><span>필수 의존성</span></div>
+        </div>
+      </div>
+
+      <div id="demo" class="runtime-card" aria-label="에이전트 실행 데모">
+        <div class="card-glow"></div>
+        <div class="runtime-topbar">
+          <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+          <span>run_81d4722</span>
+          <div class="live"><i></i> LIVE</div>
+        </div>
+        <div class="runtime-body">
+          <div class="user-prompt"><span>ME</span><p>금요일까지 보안 리뷰 할 일을 만들어줘</p></div>
+          <div class="run-label">AGENT RUN</div>
+          <div class="timeline">
+            <div class="event active" data-step="1"><i></i><div><b>요청 이해</b><small>업무 생성 의도와 마감일을 파악했습니다.</small></div><time>12ms</time></div>
+            <div class="event" data-step="2"><i></i><div><b>도구 선택</b><small>create_task · external_write</small></div><time>8ms</time></div>
+            <div class="event approval" data-step="3"><i></i><div><b>사용자 승인</b><small>공유 상태를 변경하기 전 실행을 중단합니다.</small></div><span>APPROVED</span></div>
+            <div class="event" data-step="4"><i></i><div><b>실행 완료</b><small>“보안 리뷰” 할 일이 생성되었습니다.</small></div><time>6ms</time></div>
+          </div>
+        </div>
+        <div class="runtime-footer">
+          <span><i></i> 모든 단계가 추적됩니다</span>
+          <button id="replay" type="button" aria-label="실행 과정 다시 보기">다시 실행 ↻</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip" aria-label="핵심 구성요소">
+      <div class="container">
+        <span>MODEL PROVIDER</span><b>×</b><span>TOOL REGISTRY</span><b>×</b><span>HUMAN APPROVAL</span><b>×</b><span>TRACE STORE</span>
+      </div>
+    </section>
+
+    <section id="features" class="section container">
+      <div class="section-heading">
+        <div><p class="kicker">BUILT FOR REAL WORK</p><h2>운영에 필요한 기반을<br>처음부터 담았습니다.</h2></div>
+        <p>작은 데모에서 시작해도 교체 가능한 경계와 안전한 실행 흐름을 유지합니다.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature feature-wide violet">
+          <div class="feature-icon">⌁</div>
+          <div><span>01 · ORCHESTRATION</span><h3>도구를 판단하고, 결과까지 이어갑니다.</h3><p>모델 출력에서 함수 호출을 감지해 검증·실행하고, 결과를 다시 모델에 전달하는 완전한 에이전트 루프입니다.</p></div>
+          <div class="mini-flow"><span>Prompt</span><i>→</i><span>Plan</span><i>→</i><span>Tool</span><i>→</i><span>Answer</span></div>
+        </article>
+        <article class="feature dark">
+          <div class="feature-icon">✓</div>
+          <span>02 · SAFETY</span><h3>사람이 통제하는 실행</h3><p>조회 작업은 바로 처리하고, 외부 상태를 바꾸는 작업은 명시적 승인 후 재개합니다.</p>
+          <div class="approval-chip"><i></i> HUMAN IN THE LOOP</div>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">◫</div>
+          <span>03 · MEMORY</span><h3>대화를 넘어서는 문맥</h3><p>세션 이력과 사용자 선호를 분리해 보존하고 다음 요청에 안전하게 주입합니다.</p>
+          <div class="memory-lines"><i></i><i></i><i></i></div>
+        </article>
+        <article class="feature">
+          <div class="feature-icon">◎</div>
+          <span>04 · OBSERVABILITY</span><h3>블랙박스 없는 실행</h3><p>모델 호출, 도구 인자, 지연 시간, 승인 이벤트를 하나의 Run으로 추적합니다.</p>
+          <div class="trace-bars"><i></i><i></i><i></i><i></i><i></i></div>
+        </article>
+        <article class="feature feature-wide mint">
+          <div class="feature-icon">⌕</div>
+          <div><span>05 · KNOWLEDGE</span><h3>사내 지식을 실행 문맥으로.</h3><p>기본 Markdown 검색부터 사내 검색, 벡터 DB, 권한 기반 RAG까지 동일한 도구 인터페이스로 확장할 수 있습니다.</p></div>
+          <div class="knowledge-result"><small>employee-handbook.md</small><b>보안 정책</b><p>외부 도구 도입 전 보안 검토와 개인정보 영향 평가를 완료해야 합니다.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="architecture" class="architecture-section">
+      <div class="container">
+        <div class="section-heading light">
+          <div><p class="kicker">REFERENCE ARCHITECTURE</p><h2>단순하게 시작하고,<br>기업 환경으로 확장하세요.</h2></div>
+          <p>모델, 도구, 상태 저장소가 분리되어 있어 특정 공급자나 인프라에 종속되지 않습니다.</p>
+        </div>
+        <div class="architecture-map" role="img" aria-label="사용자 요청에서 모델, 에이전트 런타임, 도구와 저장소로 이어지는 아키텍처">
+          <div class="arch-node user-node"><small>ENTRY</small><b>Web / API</b></div>
+          <div class="connector"><i></i><span>REQUEST</span><i></i></div>
+          <div class="arch-node runtime-node"><small>CORE</small><b>Agent Runtime</b><p>Plan · Execute · Resume</p></div>
+          <div class="connector split"><i></i><span>ROUTE</span><i></i></div>
+          <div class="arch-stack">
+            <div class="arch-node"><small>INTELLIGENCE</small><b>Model Provider</b></div>
+            <div class="arch-node"><small>ACTIONS</small><b>Tool Registry</b></div>
+            <div class="arch-node"><small>CONTEXT</small><b>State Store</b></div>
+          </div>
+        </div>
+        <div class="architecture-notes">
+          <span><i></i> OpenAI Responses API</span><span><i></i> 승인형 외부 작업</span><span><i></i> PostgreSQL / Redis 교체 가능</span><span><i></i> 평가 및 감사 로그</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="quickstart" class="section quickstart container">
+      <div class="quick-copy">
+        <p class="kicker">ZERO-DEPENDENCY START</p>
+        <h2>60초면 충분합니다.</h2>
+        <p>Python만 있으면 데모 모드로 즉시 실행됩니다. 실제 모델 연결은 환경 변수 세 줄이면 끝납니다.</p>
+        <ol>
+          <li><span>1</span><div><b>저장소 복제</b><small>GitHub에서 코드를 내려받습니다.</small></div></li>
+          <li><span>2</span><div><b>런타임 실행</b><small>별도 패키지 설치가 필요 없습니다.</small></div></li>
+          <li><span>3</span><div><b>브라우저에서 확인</b><small>도구 호출과 승인을 직접 테스트합니다.</small></div></li>
+        </ol>
+      </div>
+      <div class="terminal-card">
+        <div class="terminal-head"><div><i></i><i></i><i></i></div><span>Terminal</span><button id="copy-code" type="button">복사</button></div>
+        <pre><code><span class="comment"># clone</span>
+<span class="prompt">$</span> git clone https://github.com/choijinwon/agent-native-build-.git
+<span class="prompt">$</span> cd agent-native-build-
+
+<span class="comment"># run — no API key required</span>
+<span class="prompt">$</span> python3 -m agent_native
+
+<span class="success">✓ Native Agent running at http://127.0.0.1:8080</span></code></pre>
+      </div>
+    </section>
+
+    <section class="final-cta container">
+      <div class="cta-orb">N</div>
+      <p class="kicker">BUILD YOUR FIRST AGENT</p>
+      <h2>아이디어를 실행 가능한<br>에이전트로 바꿔보세요.</h2>
+      <p>오픈소스로 시작하고, 당신의 데이터와 업무 도구를 연결하세요.</p>
+      <a class="button primary" href="https://github.com/choijinwon/agent-native-build-" target="_blank" rel="noreferrer">GitHub에서 시작하기 <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container"><a class="brand" href="#top"><span class="brand-mark">N</span><span>Native Agent</span></a><p>Tools · Approvals · Memory · Traces</p><span>MIT License · 2026</span></div>
+  </footer>
+  <div id="toast" role="status" aria-live="polite">명령어를 복사했습니다.</div>
+  <script src="app.js"></script>
+</body>
+</html>
+
