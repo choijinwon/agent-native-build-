@@ -14,6 +14,14 @@
 
 ## 빠른 시작
 
+### 소개 웹페이지 배포
+
+[Netlify에서 소개 페이지 열기](https://agent-native-build-choijinwon.netlify.app/)
+
+Netlify는 `netlify.toml`에 지정된 `docs` 폴더를 게시합니다. 별도의 빌드 명령이나 의존성 설치는 필요하지 않습니다. 이 페이지는 기능 소개와 실행 과정 애니메이션을 제공하며, 실제 대화·도구 실행은 아래 Python 런타임에서 사용할 수 있습니다.
+
+### Python 런타임 실행
+
 Python 3.11 이상만 필요합니다.
 
 ```bash
@@ -69,4 +77,3 @@ Browser UI -> HTTP API -> AgentRuntime -> ModelProvider
 ```
 
 현재 저장소는 로컬 JSON을 사용합니다. 운영 환경에서는 `StateStore` 인터페이스 뒤에 PostgreSQL/Redis를, `KnowledgeSearchTool` 뒤에 사내 검색 또는 벡터 DB를 연결하고 인증·테넌트 분리·감사 로그를 추가하는 구성이 적합합니다.
-
